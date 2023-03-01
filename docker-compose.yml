@@ -1,0 +1,26 @@
+version: '3'
+services:
+  app:
+    image: e2emcve
+    container_name: api_e2e
+    environment:
+      - MONGODB_URI=mongodb://api:password@db:27017
+    ports:
+      - '127.0.0.1:3333:3333'
+
+  db:
+    image: mongo:4.2
+    container_name: db_e2e
+    env_file:
+      - .env
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=api
+      - MONGO_INITDB_ROOT_PASSWORD=password
+      - MONGO_INITDB_DATABASE=api
+    ports:
+      - '127.0.0.1:28017:27017'
+    volumes:
+      - e2edb:/data/db
+
+volumes:
+  e2edb:
