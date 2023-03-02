@@ -5,8 +5,8 @@ import mongoose, { connect } from 'mongoose';
 import net from 'net';
 import { DEFAULT_DB_NAME } from '../../../api/src/app/app.module';
 
-export const APP_PORT = 7463;
-export const DB_EXPOSED_PORT = 37017;
+export const APP_PORT = 3333;
+export const DB_EXPOSED_PORT = 28017;
 
 const dbStartCommand = `docker compose up db`;
 const dbStopCommand = `docker compose stop db`;
