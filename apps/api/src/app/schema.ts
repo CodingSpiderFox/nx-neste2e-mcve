@@ -3,10 +3,10 @@ import { Document } from 'mongoose';
 
 export type MyDocument = MyData & Document;
 
-@Schema({timestamps: true, autoIndex:false, collection: 'my_documents'})
+@Schema({ timestamps: true, autoIndex: false, collection: 'my_documents' })
 export class MyData {
-    @Prop({ required: true })
-    message: string;
+  @Prop({ required: true })
+  message: string;
 }
 
 export const MySchema = SchemaFactory.createForClass(MyData);

@@ -7,13 +7,15 @@ type ObjectId = Types.ObjectId;
 
 @Injectable()
 export class AppService {
-  constructor(@InjectModel(MyData.name) private readonly dataModel: Model<MyDocument>) {}
+  constructor(
+    @InjectModel(MyData.name) private readonly dataModel: Model<MyDocument>
+  ) {}
 
   async getData(): Promise<{ message: string }[]> {
-    return (await this.dataModel.find()); 
+    return await this.dataModel.find();
   }
 
-  async addData(item: {message: string}) {
+  async addData(item: { message: string }) {
     await this.dataModel.create({ message: item.message });
   }
 

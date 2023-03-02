@@ -1,5 +1,5 @@
-import { setDefaultResultOrder } from "dns";
-import { startDbAndApp } from "./helpers";
+import { setDefaultResultOrder } from 'dns';
+import { startDbAndApp } from './helpers';
 
 /* eslint-disable */
 var __TEARDOWN_MESSAGE__: string;
