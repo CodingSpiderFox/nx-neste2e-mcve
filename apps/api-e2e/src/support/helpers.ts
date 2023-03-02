@@ -7,6 +7,11 @@ import { DEFAULT_DB_NAME } from '../../../api/src/app/app.module';
 
 export const APP_PORT = 3333;
 export const DB_EXPOSED_PORT = 28017;
+export const DB_URI =
+  process.env.MONGODB_URI ||
+  // fallback to use if tests are not run via nx e2e which automatically assigns the process.env.MONGODB_URI from the .env file in the root of the workspace.
+  // TODO this could also be done by setting process.env.MONGODB_URI in jest.config.ts
+  `mongodb://api:password@localhost:${DB_EXPOSED_PORT}`;
 
 const dbStartCommand = `docker compose up db`;
 const dbStopCommand = `docker compose stop db`;
@@ -74,7 +79,7 @@ export async function stopDb(): Promise<void> {
 
 export async function resetDb(): Promise<void> {
   try {
-    connect(`${process.env.MONGODB_URI}`, async () => {
+    connect(`${DB_URI}`, async () => {
       if (mongoose.connection.db) {
         await mongoose.connection.db.dropDatabase({ dbName: DEFAULT_DB_NAME });
       }
